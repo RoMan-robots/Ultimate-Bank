@@ -1,0 +1,50 @@
+@import 'vars.css';
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  header {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: auto;
+  }
+
+  header h1 {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+  }
+  
+  header p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+p {
+    color: var(--secondary-color);
+  }
+
+  a {
+    color: var(--link-color);
+  }
+  
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: var(--secondary-color);
+  }
