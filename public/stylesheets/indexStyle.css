@@ -14,20 +14,21 @@ body {
 }
 
 header {
-    margin-top: 3rem;
+    margin-top: 2rem;
     border: 2px solid var(--secondary-color);
     border-radius: 10px;
     padding: 1.5rem;
-    width: auto;
+    width: 90%;
+    max-width: 400px;
 }
 
 header h1 {
-    font-size: 5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
 }
 
 header p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
@@ -44,11 +45,10 @@ a:hover {
 }
 
 .nav-btn {
-    margin-top: 3rem;
+    margin-top: 2rem;
     border: 2px solid var(--secondary-color);
     border-radius: 10px;
     padding: 1.5rem;
-    width: auto;
 }
 
 .nav-btn button {
@@ -59,11 +59,10 @@ a:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 2px;
     cursor: pointer;
     border-radius: 5px;
-
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -74,13 +73,52 @@ a:hover {
 }
 
 .info {
-    overflow-y: scroll;
-    height: 20vh
+    overflow-y: auto;
+    height: auto;
+    max-height: 70vh;
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem 0;
+    padding: 1rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+}
+
+.info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
+    width: 100%;
     text-align: center;
     color: var(--secondary-color);
+    padding: 1rem;
+    margin-top: auto;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .nav-btn button {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+
+    .info {
+        width: 95%;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-height: 700px) {
+    .info {
+        max-height: 40vh;
+    }
 }
