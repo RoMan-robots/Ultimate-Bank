@@ -4,27 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/registerStyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="/javascripts/registerScript.js"></script>
     <title>Реєстрація | Ultimate Bank</title>
 </head>
 
 <body>
     <h1>Реєстрація | Ultimate Bank</h1>
-    <form action="/register" method="post">
+    <form action="/register" method="post" id="register-form">
         <label for="name">Ім'я:</label>
-        <input type="text" id="name" name="name" required>
+        <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required
+        >
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required
+        >
 
         <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required>
+        <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+        >
 
         <label for="confirm-password">Підтвердження паролю:</label>
-        <input type="password" id="confirm-password" name="confirm-password" required>
+        <input 
+            type="password" 
+            id="confirm-password" 
+            name="confirm-password" 
+            required
+        >
 
         <div>
             <button type="button" onclick="window.location.href='/'">Назад</button>
-            <button type="submit">Зареєструватися</button>
+            <button type="button" id="register">Зареєструватися</button>
         </div>
     </form>
 </body>
