@@ -31,6 +31,8 @@ $(document).ready(function() {
             showNotification('Паролі не збігаються', 'error');
             return;
         }
+
+        $('#register-form').submit();
     }
     function showNotification(message, type) {
         const notification = document.createElement('div');
