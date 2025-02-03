@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+require('dotenv').config('../.env');
 
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -9,4 +10,4 @@ const pool = new Pool({
     max: 10,
 });
 
-module.exports = pool;
+module.exports = {pool};
