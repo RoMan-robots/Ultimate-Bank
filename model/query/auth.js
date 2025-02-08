@@ -70,4 +70,32 @@ async function loginUser(email, password) {
     }
 }
 
-module.exports = { registerUser, loginUser };
+async function checkAuth(token) {
+    let client;
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        
+        client = await pool.connect();
+        
+        const userCheck = await client.query(
+            'SELECT id, login as name, email, balance FROM users WHERE id = $1',
+            [decoded.user.id]
+        );
+        
+        if (userCheck.rows.length === 0) {
+            return null;
+        }
+        
+        return userCheck.rows[0];
+        
+    } catch (error) {
+        console.error('Check auth error:', error);
+        return null;
+    } finally {
+        if (client) {
+            client.release();
+        }
+    }
+}
+
+module.exports = { registerUser, loginUser, checkAuth };

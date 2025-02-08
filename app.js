@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/auth/login');
 var registerRouter = require('./routes/auth/register');
+var checkAuthRouter = require('./routes/auth/checkAuth');
+var dashboardRouter = require('./routes/dashboard');
 
 var app = express();
 
@@ -20,9 +22,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-
+app.use('/checkAuth', checkAuthRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
