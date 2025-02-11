@@ -5,14 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Ultimate Bank</title>
     <link rel='stylesheet' href='/stylesheets/dashboardStyle.css' />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/javascripts/dashboardScript.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
     <header class="header">
         <h1>Вітаємо, <span id="username"></span>!</h1>
         <div class="card">
             <h2>Ваш баланс: <span id="balance"></span></h2>
+            <p>ID Гаманця: <span id="id"></span></p>
+        </div>
+        <div class="buttons">
+            <button>Переслати кошти</button>
+            <button>Переглянути дохід</button>
+        </div>
+        <div class="inventory">
+            <h2>Ваш інвентар:</h2>
+            <div class="inventory-items">
+                <p>Тут поки що пусто</p>
+            </div>
         </div>
     </header>
     <footer class="footer">

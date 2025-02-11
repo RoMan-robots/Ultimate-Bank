@@ -1,0 +1,90 @@
+@import 'vars.css';
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    color: black;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.card:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    transform: scale(1.05);
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.buttons button {
+    background-color: var(--primary-color);
+    user-select: none;
+    border: none;
+    color: var(--bg-color);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttons button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.03);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.inventory {
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.footer {
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid var(--secondary-color);
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
