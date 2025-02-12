@@ -17,10 +17,17 @@
             <h2>Ваш баланс: <span id="balance"></span></h2>
             <p>ID Гаманця: <span id="id"></span></p>
         </div>
-        <div class="buttons">
-            <button>Переслати кошти</button>
-            <button>Переглянути дохід</button>
-        </div>
+        <nav>
+            <h2>Меню</h2>
+            <div class="buttons">
+                <button onclick="window.location.href='/dashboard'">Задонатити</button>
+                <button onclick="window.location.href='/store'">Ultimate Store</button>
+                <button onclick="window.location.href='/goldenWallet'">Golden Wallet</button>
+                <button onclick="window.location.href='/quests'">Квести</button>
+                <button onclick="window.location.href='/rewards'">Мої транзакції</button>
+                <button onclick="window.location.href='/settings'">Налаштування</button>
+            </div>
+        </nav>
         <div class="inventory">
             <h2>Ваш інвентар:</h2>
             <div class="inventory-items">
