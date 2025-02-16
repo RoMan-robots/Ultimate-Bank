@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Store</title>
+    <link rel='stylesheet' href='/stylesheets/storeStyle.css' />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascripts/storeScript.js"></script>
+</head>
+
+<body>
+    <h1>Вітаємо в Ultimate Store!</h1>
+    <h3>Тут можна купити різноманітні товари на будь-який смак і бюджет</h3>
+    <div id="sort">
+        <div class="section-header">
+            <p><b>Сортування за:</b></p>
+            <button class="toggle-section">▼</button>
+        </div>
+        <div class="section-content" style="display: none;">
+            <select name="Сортувати за:" class="sort" id="sort-select">
+                <option value="price-low-to-hight">Ціною: від дешевих до дорожчих</option>
+                <option value="price-high-to-low">Ціною: від дорогих до дешевших</option>
+                <option value="rarity-high-to-low">Рідкістю: від легендарного до звичайного</option>
+                <option value="rarity-low-to-high">Рідкістю: від звичайного до рідкісного</option>
+                <option value="category">За категорією</option>
+                <option value="alphabet">За алфавітом</option>
+            </select>
+        </div>
+    </div>
+    
+    <div id="filter">
+        <div class="section-header">
+            <p><b>Фільтри:</b></p>
+            <button class="toggle-section">▼</button>
+        </div>
+        <div class="section-content" style="display: none;">
+            <div id="prices">
+                <p>Ціна:</p>
+                <p>від</p>
+                <input type="number" id="min-price" name="min-price" min="0">
+                <p>до</p>
+                <input type="number" id="max-price" name="max-price" min="0">
+            </div>
+            
+            <div id="rarities">
+                <p>Рідкість:</p>
+                <input type="checkbox" id="common" name="common" value="common">
+                <label for="common">Звичайна</label>
+                <input type="checkbox" id="uncommon" name="uncommon" value="uncommon">
+                <label for="uncommon">Незвичайна</label>
+                <input type="checkbox" id="rare" name="rare" value="rare">
+                <label for="rare">Рідкісна</label>
+                <input type="checkbox" id="epic" name="epic" value="epic">
+                <label for="epic">Епічна</label>
+                <input type="checkbox" id="legendary" name="legendary" value="legendary">
+                <label for="legendary">Легендарна</label>
+            </div>
+            
+            <div id="categories">
+                <p>Категорія:</p>
+                <input type="checkbox" id="clothing" name="category" value="Одяг">
+                <label for="clothing">Одяг</label>
+                
+                <input type="checkbox" id="electronics" name="category" value="Електроніка">
+                <label for="electronics">Електроніка</label>
+                
+                <input type="checkbox" id="accessories" name="category" value="Аксесуари">
+                <label for="accessories">Аксесуари</label>
+                
+                <input type="checkbox" id="stationery" name="category" value="Канцелярія">
+                <label for="stationery">Канцелярія</label>
+                
+                <input type="checkbox" id="decor" name="category" value="Декор">
+                <label for="decor">Декор</label>
+            </div>
+            
+            <div id="exclusives">
+                <p>Golden Wallet:</p>
+                <input type="checkbox" id="exclusive" name="exclusive" value="false">
+                <label for="exclusive">Тільки ексклюзивні предмети для Golden Wallet</label>
+            </div>
+        </div>
+    </div>
+    <div class="store-items">
+    </div>
+</body>
+
+</html>

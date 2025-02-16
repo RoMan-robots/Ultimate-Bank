@@ -1,0 +1,118 @@
+@import 'vars.css';
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: var(--primary-color);
+}
+
+h3, p, span {
+    color: var(--secondary-color);
+}
+
+.section-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle-section {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.section-content {
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+.sort, .filter {
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+}
+
+label {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+input {
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+}
+
+input:hover {
+    border: 2px solid var(--primary-color);
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.store-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.store-item {
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.store-item:hover {
+    transform: scale(1.05);
+}
+
+.store-item img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.buy-button {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: var(--secondary-color);
+}
