@@ -94,9 +94,7 @@ input:focus {
 }
 
 .item-details {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 .buy-button {
