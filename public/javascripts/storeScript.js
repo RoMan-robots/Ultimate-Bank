@@ -45,6 +45,10 @@ $(document).ready(function () {
 
     function renderStoreItems(items) {
         storeItems.empty();
+        if(!items.length) {
+            storeItems.append('<p>Пустий магазин</p>');
+            return;
+        }
 
         const rarityTranslations = {
             'common': 'Звичайна',
@@ -64,6 +68,7 @@ $(document).ready(function () {
                         <span class="price">${item.price} ℝ$</span> <br>
                         <span class="category">Категорія: ${item.category}</span> <br>
                         <span class="rarity">Рідкість: ${rarityTranslations[item.rarity] || item.rarity}</span>
+                        ${item.exclusive ? '<span class="exclusive">Ексклюзив для Golden Wallet</span>' : ''}
                     </div>
                     <button class="buy-button" data-id="${item.id}">Придбати</button>
                 </div>
@@ -95,6 +100,44 @@ $(document).ready(function () {
 
         renderStoreItems(sortedItems);
     }
+
+    function filterItems() {
+        let minPrice = parseInt($('#min-price').val()) || 0;
+        let maxPrice = parseInt($('#max-price').val()) || Infinity;
+
+        let rarities = [];
+        let categories = [];
+
+        let exclusive = $('#exclusive').is(':checked');
+
+        if ($('#common').is(':checked')) rarities.push('common');
+        if ($('#uncommon').is(':checked')) rarities.push('uncommon');
+        if ($('#rare').is(':checked')) rarities.push('rare');
+        if ($('#epic').is(':checked')) rarities.push('epic');
+        if ($('#legendary').is(':checked')) rarities.push('legendary');
+
+        if ($('clothing').is(':checked')) categories.push('Одяг');
+        if ($('electronics').is(':checked')) categories.push('Електроніка');
+        if ($('accessories').is(':checked')) categories.push('Аксесуари');
+        if ($('school').is(':checked')) categories.push('Канцелярія');
+        if ($('decor').is(':checked')) categories.push('Декор');
+        if ($('transport').is(':checked')) categories.push('Транспорт');
+
+
+        let filteredItems = items.filter(item => {
+            const priceInRange = item.price >= minPrice && item.price <= maxPrice;
+            const rarityMatch = rarities.length === 0 || rarities.includes(item.rarity);
+            const categoryMatch = categories.length === 0 || categories.includes(item.category);
+            const exclusiveMatch = !exclusive || item.is_golden;
+            console.log(item);
+
+            return priceInRange && rarityMatch && categoryMatch && exclusiveMatch;
+        });
+
+        renderStoreItems(filteredItems);
+    }
+
+    $('#filter input').on('change', filterItems);
     $('#sort-select').on('change', sortItems);
     $.ajax({
         url: '/store/all',
