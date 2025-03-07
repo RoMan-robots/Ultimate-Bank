@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     function renderStoreItems(items) {
         storeItems.empty();
-        if(!items.length) {
+        if (!items.length) {
             storeItems.append('<p>Пустий магазин</p>');
             return;
         }
@@ -73,6 +73,10 @@ $(document).ready(function () {
                     <button class="buy-button" data-id="${item.id}">Придбати</button>
                 </div>
             `;
+            $('.buy-button').click(function (e) { 
+                const itemId = $(this).data('id');
+                buyItem(itemId);
+            });
             storeItems.append(itemCard);
         });
     }
@@ -151,4 +155,32 @@ $(document).ready(function () {
             $storeItems.html('<p>Не вдалося завантажити товари. Спробуйте пізніше.</p>');
         }
     });
+
+    function buyItem(itemId) {
+        $.ajax({
+            type: "POST",
+            url: "/checkAuth",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            data: "data",
+            dataType: "dataType",
+            success: function (userId) {
+                $.ajax({
+                    url: '/store/buy',
+                    method: 'POST',
+                    data: { itemId, userId },
+                    success: function (response) {
+                        console.log('Товар покупки:', response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Помилка при покупці товару:', error);
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Помилка при перевірці автендифікації:', error);
+            }
+        });
+    }
 });
