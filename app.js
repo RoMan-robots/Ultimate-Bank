@@ -9,6 +9,7 @@ var loginRouter = require('./routes/auth/login');
 var registerRouter = require('./routes/auth/register');
 var checkAuthRouter = require('./routes/auth/checkAuth');
 var dashboardRouter = require('./routes/dashboard');
+var aboutRouter = require('./routes/about');
 var storeRouter = require('./routes/store');
 
 var app = express();
@@ -28,6 +29,7 @@ app.use('/store', storeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/checkAuth', checkAuthRouter);
+app.use('/about', aboutRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
