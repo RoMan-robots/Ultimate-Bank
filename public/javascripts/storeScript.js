@@ -70,16 +70,17 @@ $(document).ready(function () {
                         <span class="rarity">Рідкість: ${rarityTranslations[item.rarity] || item.rarity}</span> <br>
                         ${item.is_golden ? '<span class="exclusive">Ексклюзивно для Golden Wallet</span>' : ''}
                     </div>
-                    <button class="buy-button" data-id="${item.id}">Придбати</button>
+                    <button class="buy-button">Придбати</button>
                 </div>
             `;
-            $('.buy-button').on('click', function (e) { 
-                const itemId = $(this).data('id');
-                buyItem(itemId);
-            });
             storeItems.append(itemCard);
         });
     }
+
+    $(document).on('click', '.buy-button', function (e) { 
+        const itemId = $(this).closest('.store-item').data('id');
+        buyItem(itemId);
+    });
 
     function sortItems() {
         const sortType = $('#sort-select').val();

@@ -10,7 +10,7 @@ async function getStoreItemById(id) {
 
 async function buyStoreItem(userId, itemId) {
     console.log(userId, itemId, new Date());
-    // return runQuery('INSERT INTO purchases (customer, bought_item, date) VALUES ($1, $2, $3)', [userId, itemId, new Date()]);
+    return runQuery('INSERT INTO purchases (customer, bought_item, date) VALUES ($1, $2, $3)', [userId, itemId, new Date()]);
 }
 
 async function runQuery(query, params) {
