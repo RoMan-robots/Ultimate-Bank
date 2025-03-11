@@ -73,7 +73,7 @@ $(document).ready(function () {
                     <button class="buy-button" data-id="${item.id}">Придбати</button>
                 </div>
             `;
-            $('.buy-button').click(function (e) { 
+            $('.buy-button').on('click', function (e) { 
                 const itemId = $(this).data('id');
                 buyItem(itemId);
             });
@@ -157,7 +157,6 @@ $(document).ready(function () {
     });
 
     function buyItem(itemId) {
-        console.log('Buying item:', itemId);
         $.ajax({
             type: "GET",
             url: "/checkAuth",
@@ -165,13 +164,14 @@ $(document).ready(function () {
                 'Authorization': `Bearer ${token}`
             },
             dataType: "json", 
-            success: function (userId) {
+            success: function (userResponse) {
+                const userId = userResponse.user.id;
                 $.ajax({
                     url: '/store/buy',
                     method: 'POST',
                     data: { itemId, userId },
-                    success: function (response) {
-                        console.log('Товар покупки:', response);
+                    success: function (storeResponse) {
+                        console.log('Товар покупки:', storeResponse, itemId, userId);
                     },
                     error: function (xhr, status, error) {
                         console.error('Помилка при покупці товару:', error);
