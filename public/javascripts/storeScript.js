@@ -67,8 +67,8 @@ $(document).ready(function () {
                     <div class="item-details">
                         <span class="price">${item.price} ℝ$</span> <br>
                         <span class="category">Категорія: ${item.category}</span> <br>
-                        <span class="rarity">Рідкість: ${rarityTranslations[item.rarity] || item.rarity}</span>
-                        ${item.exclusive ? '<span class="exclusive">Ексклюзив для Golden Wallet</span>' : ''}
+                        <span class="rarity">Рідкість: ${rarityTranslations[item.rarity] || item.rarity}</span> <br>
+                        ${item.is_golden ? '<span class="exclusive">Ексклюзивно для Golden Wallet</span>' : ''}
                     </div>
                     <button class="buy-button" data-id="${item.id}">Придбати</button>
                 </div>
