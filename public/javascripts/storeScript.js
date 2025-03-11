@@ -157,14 +157,14 @@ $(document).ready(function () {
     });
 
     function buyItem(itemId) {
+        console.log('Buying item:', itemId);
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "/checkAuth",
             headers: {
                 'Authorization': `Bearer ${token}`
             },
-            data: "data",
-            dataType: "dataType",
+            dataType: "json", 
             success: function (userId) {
                 $.ajax({
                     url: '/store/buy',
