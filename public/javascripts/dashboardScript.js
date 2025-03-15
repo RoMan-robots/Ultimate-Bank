@@ -45,4 +45,11 @@ $(document).ready(function() {
             window.location.href = '/';
         }
     });
+
+    function logout() {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+    }
+
+    $('#logout-button').on('click', logout);
 });
