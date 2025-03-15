@@ -19,7 +19,7 @@ h1 {
     margin-bottom: 0;
 }
 
-h2 {
+h2, p {
     color: var(--secondary-color);
 }
 
@@ -42,4 +42,12 @@ button:hover {
     background-color: var(--secondary-color);
     transform: scale(1.03);
     transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-color-hover);
 }
