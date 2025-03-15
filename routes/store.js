@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { getAllStoreItems, buyStoreItem, getStoreItemById, hasUserItem } = require('../model/query/store');
+var { getAllStoreItems, buyStoreItem, getStoreItemById, hasUserItem, getUserInventory } = require('../model/query/store');
 
 router.get('/', function(req, res, next) {
   res.render('store');
@@ -37,5 +37,11 @@ router.post('/buy', async function(req, res) {
   await buyStoreItem(userId, itemId);
   res.status(200).json({ success: true });
 });
+
+router.get('/inventory', async function(req, res) {
+  const { userId } = req.body;
+  const inventory = await getUserInventory(userId);
+  res.send(inventory);
+})
 
 module.exports = router;

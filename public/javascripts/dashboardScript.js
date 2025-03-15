@@ -13,9 +13,23 @@ $(document).ready(function() {
             'Authorization': `Bearer ${token}`
         },
         success: function (response) {
+            const user = response.user;
             if (response.isAuthenticated) {
-                $('#username').text(response.user.name);
-                $('#balance').text(`${(response.user.balance).toFixed(2)} ℝ$`); 
+                $('#username').text(user.name);
+                $('#balance').text(`${(user.balance).toFixed(2)} ℝ$`); 
+                $.ajax({
+                    type: "GET",
+                    url: "/store/inventory",
+                    data: {
+                        userId: user.id
+                    },
+                    success: function (items) {
+                        console.log(items);
+                        if (items.length > 0) {
+                            $('.inventory-items').text(items);
+                        }
+                    }
+                });
             } else {
                 localStorage.removeItem('token');
                 window.location.href = '/';

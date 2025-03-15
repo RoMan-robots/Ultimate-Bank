@@ -15,8 +15,11 @@ async function buyStoreItem(userId, itemId) {
 
 async function hasUserItem(userId, itemId) {
     const result = await runQuery('SELECT * FROM purchases WHERE customer = $1 AND bought_item = $2', [userId, itemId]);
-    
     return result.length > 0; 
+}
+
+async function getUserInventory(userId) {
+    return await runQuery('SELECT * FROM purchases WHERE customer = $1', [userId]);
 }
 
 async function runQuery(query, params) {
@@ -37,4 +40,4 @@ async function runQuery(query, params) {
     }
 }
 
-module.exports = { getAllStoreItems, getStoreItemById, buyStoreItem, hasUserItem };
+module.exports = { getAllStoreItems, getStoreItemById, buyStoreItem, hasUserItem, getUserInventory };
