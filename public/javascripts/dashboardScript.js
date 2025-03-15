@@ -19,15 +19,20 @@ $(document).ready(function() {
                 $('#balance').text(`${(user.balance).toFixed(2)} ℝ$`); 
                 $.ajax({
                     type: "GET",
-                    url: "/store/inventory",
-                    data: {
-                        userId: user.id
-                    },
+                    url: `/store/inventory/${user.id}`,
                     success: function (items) {
                         console.log(items);
                         if (items.length > 0) {
-                            $('.inventory-items').text(items);
+                            $('.inventory-items').empty();
+                            items.forEach(item => {
+                                $('.inventory-items').append(`<div>${item.name} - ${item.price} ℝ$</div>`);
+                            });
+                        } else {
+                            $('.inventory-items').text('Ваш інвентар порожній.');
                         }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error fetching inventory:', error);
                     }
                 });
             } else {

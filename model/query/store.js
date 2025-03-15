@@ -19,7 +19,15 @@ async function hasUserItem(userId, itemId) {
 }
 
 async function getUserInventory(userId) {
-    return await runQuery('SELECT * FROM purchases WHERE customer = $1', [userId]);
+    const result = await runQuery(`
+        SELECT i.id, i.name, i.price, COUNT(p.bought_item) AS q
+        FROM purchases p
+        JOIN store_items i ON p.bought_item = i.id
+        WHERE p.customer = $1
+        GROUP BY i.id
+    `, [userId]);
+
+    return result;
 }
 
 async function runQuery(query, params) {

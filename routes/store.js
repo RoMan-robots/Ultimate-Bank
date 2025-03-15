@@ -38,10 +38,10 @@ router.post('/buy', async function(req, res) {
   res.status(200).json({ success: true });
 });
 
-router.get('/inventory', async function(req, res) {
-  const { userId } = req.body;
+router.get('/inventory/:userId', async function(req, res) {
+  const userId = req.params.userId;
   const inventory = await getUserInventory(userId);
-  res.send(inventory);
-})
+  res.json(inventory);
+});
 
 module.exports = router;
