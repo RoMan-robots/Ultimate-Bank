@@ -174,10 +174,10 @@ $(document).ready(function () {
                     contentType: 'application/json',
                     data: JSON.stringify({ itemId, user }),
                     success: function (storeResponse) {
-                        console.log('Товар покупки:', storeResponse, itemId, userResponse.user.id);
+                        showNotification("Товар куплено успішно", 'success');
                     },
                     error: function (xhr, status, error) {
-                        showNotification('error', xhr.responseJSON.error);
+                        showNotification(xhr.responseJSON.error, 'error');
                     }
                 });
             },

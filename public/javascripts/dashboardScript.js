@@ -15,7 +15,7 @@ $(document).ready(function() {
         success: function (response) {
             if (response.isAuthenticated) {
                 $('#username').text(response.user.name);
-                $('#balance').text(`${response.user.balance} ℝ$`); 
+                $('#balance').text(`${(response.user.balance).toFixed(2)} ℝ$`); 
             } else {
                 localStorage.removeItem('token');
                 window.location.href = '/';

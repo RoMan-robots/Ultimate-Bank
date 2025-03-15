@@ -1,10 +1,14 @@
+@import 'vars.css';
+
 .notification {
+    background-color: var(--bg-color);
     width: 350px;
     position: fixed;
     bottom: 20px;
     right: 20px;
     padding: 15px 20px;
     border-radius: 10px;
+    border: 2px solid var(--secondary-color);
     opacity: 0;
     transform: translateY(100%);
     transition: all 0.5s ease-in-out;

@@ -34,8 +34,8 @@ router.post('/buy', async function(req, res) {
     return res.status(400).json({ error: 'Недостатньо коштів для покупки цього товару' });
   }
 
-  const result = await buyStoreItem(userId, itemId);
-  res.send(JSON.stringify(result));
+  await buyStoreItem(userId, itemId);
+  res.status(200).json({ success: true });
 });
 
 module.exports = router;
