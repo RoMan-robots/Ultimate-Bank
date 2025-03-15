@@ -24,7 +24,8 @@ router.get('/', async (req, res) => {
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    balance: user.balance
+                    balance: user.balance,
+                    is_golden: user.is_golden
                 }
             });
         } else {

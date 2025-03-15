@@ -166,16 +166,18 @@ $(document).ready(function () {
             },
             dataType: "json", 
             success: function (userResponse) {
-                const userId = userResponse.user.id;
+                const user = userResponse.user;
+                console.log('Sending data:', { itemId, user })
                 $.ajax({
                     url: '/store/buy',
                     method: 'POST',
-                    data: { itemId, userId },
+                    contentType: 'application/json',
+                    data: JSON.stringify({ itemId, user }),
                     success: function (storeResponse) {
-                        console.log('Товар покупки:', storeResponse, itemId, userId);
+                        console.log('Товар покупки:', storeResponse, itemId, userResponse.user.id);
                     },
                     error: function (xhr, status, error) {
-                        console.error('Помилка при покупці товару:', error);
+                        showNotification('error', xhr.responseJSON.error);
                     }
                 });
             },

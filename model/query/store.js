@@ -9,8 +9,14 @@ async function getStoreItemById(id) {
 }
 
 async function buyStoreItem(userId, itemId) {
-    console.log(userId, itemId, new Date());
+    runQuery('UPDATE users SET balance = balance - (SELECT price FROM store_items WHERE id = $1) WHERE id = $2', [itemId, userId]);
     return runQuery('INSERT INTO purchases (customer, bought_item, date) VALUES ($1, $2, $3)', [userId, itemId, new Date()]);
+}
+
+async function hasUserItem(userId, itemId) {
+    const result = await runQuery('SELECT * FROM purchases WHERE customer = $1 AND bought_item = $2', [userId, itemId]);
+    
+    return result.length > 0; 
 }
 
 async function runQuery(query, params) {
@@ -31,4 +37,4 @@ async function runQuery(query, params) {
     }
 }
 
-module.exports = { getAllStoreItems, getStoreItemById, buyStoreItem };
+module.exports = { getAllStoreItems, getStoreItemById, buyStoreItem, hasUserItem };
