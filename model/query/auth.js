@@ -22,7 +22,7 @@ async function registerUser(name, email, password) {
         const result = await client.query(insertQuery, [name, email, hashedPassword]);
         
         const token = jwt.sign({ user: result.rows[0] }, process.env.JWT_SECRET);
-        return token;
+        return {message: 'Успішна реєстрація', token: token, type: 'success'}
     } catch (error) {
         console.error('Registration error:', error);
         return null;

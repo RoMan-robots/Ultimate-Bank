@@ -1,8 +1,40 @@
 $(document).ready(function() {
-
     $('#register').click(function(e) {
-        e.preventDefault();
-        validateData();
+        const form = $('form');
+        form.submit();
+    });
+
+
+    $('form').on('submit', function (event) {
+        event.preventDefault();
+
+        const name = $('#name').val().trim();
+        const email = $('#email').val().trim();
+        const password = $('#password').val();
+        const confirmPassword = $('#confirm-password').val();
+
+        $.ajax({
+            url: '/register',
+            method: 'POST',
+            data: {
+                email: email,
+                password: password
+            },
+            dataType: 'json',
+            success: function (response) {
+                if (response.type === 'success') {
+                    localStorage.setItem('token', response.token);
+                    window.location.href = '/dashboard';
+                }
+            },
+            error: function (xhr) {
+                const response = xhr.responseJSON || {};
+                const displayMessage = response.message || 'Помилка входу. Спробуйте пізніше';
+                const type = response.type || 'error';
+
+                showNotification(displayMessage, type);
+            }
+        });
     });
 
     function validateData() {
