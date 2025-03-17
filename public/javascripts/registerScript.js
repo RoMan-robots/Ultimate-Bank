@@ -4,32 +4,39 @@ $(document).ready(function() {
         form.submit();
     });
 
-
     $('form').on('submit', function (event) {
         event.preventDefault();
+
+        if (!validateData()) {
+            return; 
+        }
 
         const name = $('#name').val().trim();
         const email = $('#email').val().trim();
         const password = $('#password').val();
-        const confirmPassword = $('#confirm-password').val();
 
         $.ajax({
             url: '/register',
             method: 'POST',
             data: {
+                name: name,
                 email: email,
                 password: password
             },
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 if (response.type === 'success') {
                     localStorage.setItem('token', response.token);
-                    window.location.href = '/dashboard';
+                    showNotification('Реєстрація успішна. Увійдіть у ваш акаунт для продовження', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1700);
                 }
             },
             error: function (xhr) {
                 const response = xhr.responseJSON || {};
-                const displayMessage = response.message || 'Помилка входу. Спробуйте пізніше';
+                const displayMessage = response.message || 'Помилка реєстрації. Спробуйте пізніше';
                 const type = response.type || 'error';
 
                 showNotification(displayMessage, type);
@@ -45,25 +52,25 @@ $(document).ready(function() {
 
         if(name.length <= 2 || name.length >= 15 || /[^A-Za-zА-Яа-яЄєІіЇї]/.test(name)) {
             showNotification('Ім\'я повинно бути 2-15 літер, і мати лише літери', 'error');
-            return;
+            return false; 
         }
 
         const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
         if (!emailRegex.test(email)) {
             showNotification('Некоректний email', 'error');
-            return;
+            return false; 
         }
 
         if (password.length < 4) {
             showNotification('Пароль повинен бути мінімум 4 символи', 'error');
-            return;
+            return false; 
         }
 
         if (password !== confirmPassword) {
             showNotification('Паролі не збігаються', 'error');
-            return;
+            return false; 
         }
 
-        $('#register-form').submit();
+        return true;
     }
 });

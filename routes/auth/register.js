@@ -23,16 +23,16 @@ router.post('/', async function(req, res, next) {
   }
 
   try {
-    const token = await registerUser(name, email, password);
+    const result = await registerUser(name, email, password);
 
-    if (!token) {
-      return res.status(409).json({ error: 'User already exists or registration failed' });
+    if(result.type === 'success') {
+      return res.status(201).json({ message: result.message, type: result.type});
     }
 
-    res.status(201).json({ token });
+    return res.status(400).json({ error: result.message, type: result.type });
   } catch (error) {
     console.error('Registration error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error', type: 'error' });
   }
 });
 
