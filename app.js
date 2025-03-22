@@ -10,6 +10,7 @@ var registerRouter = require('./routes/auth/register');
 var checkAuthRouter = require('./routes/auth/checkAuth');
 var dashboardRouter = require('./routes/dashboard');
 var aboutRouter = require('./routes/about');
+var goldenWalletRouter = require('./routes/goldenWallet');
 var storeRouter = require('./routes/store');
 
 var app = express();
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/goldenWallet', goldenWalletRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/store', storeRouter);
 app.use('/login', loginRouter);
