@@ -17,6 +17,7 @@ $(document).ready(function() {
             if (response.isAuthenticated) {
                 $('#username').text(user.name);
                 $('#balance').text(`${(user.balance).toFixed(2)} ℝ$`); 
+                $('#id').text(user.id);
                 $.ajax({
                     type: "GET",
                     url: `/store/inventory/${user.id}`,

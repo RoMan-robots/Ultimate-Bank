@@ -79,6 +79,11 @@ nav {
     max-width: 500px;
 }
 
+.inventory-items {
+    overflow-y: scroll;
+    height: 90px;
+}
+
 .footer {
     background-color: var(--bg-color);
     color: var(--secondary-color);

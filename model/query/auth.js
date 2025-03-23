@@ -81,7 +81,7 @@ async function checkAuth(token) {
         client = await pool.connect();
         
         const userCheck = await client.query(
-            'SELECT id, login as name, email, balance FROM users WHERE id = $1',
+            'SELECT id, login as name, email, balance, is_golden FROM users WHERE id = $1',
             [decoded.user.id]
         );
         

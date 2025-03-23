@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/stylesheets/notifications.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascripts/notifications.js"></script>
     <link rel="stylesheet" href="/stylesheets/goldenWalletStyle.css">
-    <script src="/javascripts/goldenWallet.js"></script>
+    <script src="/javascripts/goldenWalletScript.js"></script>
     <title>Golden Wallet | Ultimate Bank</title>
 </head>
 <body>
-    <h1>Розблокуйте всі можливості Ultimate Bank за допомогою Golden Wallet!</h1>
+    <h1 id="title">Розблокуйте всі можливості Ultimate Bank за допомогою Golden Wallet!</h1>
 
     <img src="https://img.freepik.com/free-vector/royal-golden-crown-background-vintage-treasure-design_1017-43226.jpg?ga=GA1.1.1928887167.1742592335&semt=ais_keywords_boost" alt="Golden Wallet">
+    <h2 id="description">Всього за 400ℝ$ ви отримаєте:</h2>
 
-    <h3>Сюди входить:</h3>
     <ul>
         <li>Золота корона в профілі</li>
         <li>Можливість купляти ексклюзивні товари в <a href="/store">Ultimate Store</a></li>
@@ -22,9 +25,8 @@
     <p>Не гайте часу, розважайтеся на повну, ви цього заслуговуєте!</p>
 
     <div>
-
-        <button onclick="location.href='/'">Назад</button>
-        <button onclick="buyGoldenWallet()">Купити</button>
+        <button onclick="location.href='/dashboard'">Назад</button>
+        <button id="buy-button">Купити</button>
     </div>
 </body>
 </html> 

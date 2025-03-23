@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
         const user = await checkAuth(token);
         
         if (user) {
+            console.log(user)
             return res.status(200).json({ 
                 message: 'Token is valid',
                 isAuthenticated: true,
