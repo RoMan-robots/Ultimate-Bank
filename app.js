@@ -12,6 +12,7 @@ var dashboardRouter = require('./routes/dashboard');
 var aboutRouter = require('./routes/about');
 var goldenWalletRouter = require('./routes/goldenWallet');
 var storeRouter = require('./routes/store');
+var miniGamesRouter = require('./routes/miniGames');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use('/store', storeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/checkAuth', checkAuthRouter);
+app.use('/miniGames', miniGamesRouter);
 app.use('/about', aboutRouter);
 
 app.use(function(req, res, next) {

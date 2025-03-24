@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Міні Ігри | Ultimate Bank</title>
+    <link rel='stylesheet' href='/stylesheets/miniGamesStyle.css' />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascripts/miniGamesScript.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Міні Ігри</h1>
+        <h3>Виберіть одну з ігор, щоб заробити гроші в Ultimate Bank
+        </h3>
+    </header>
+    <main>
+        <div class="games">
+            <p>Звичайні ігри(доступні всім)</p>
+            <div class="game-buttons">
+                <div class="game">
+                    <h4>2048</h4>
+                    <p>З'єднуйте цифри і отримайте 2048</p>
+                    <button onclick="window.location.href='/miniGames/2048'">Грати</button>
+                </div>
+                <div class="game">
+                    <h4>Flappy Bird</h4>
+                    <p>Легендарна стара і важка гра, де треба стрибати між колонами та протриматись якомога довше</p>
+                    <button onclick="window.location.href='/miniGames/bird'">Грати</button>
+                </div>
+                <div class="game">
+                    <h4>Змійка</h4>
+                    <p>Збирайте яблука і робіть якомога довшого змія</p>
+                    <button onclick="window.location.href='/miniGames/snake'">Грати</button>
+                </div>
+                <div class="game">
+                    <h4>Реакція</h4>
+                    <p>Тут треба натискати на фігури якомога швидше. Якщо час складає більше секунди, гроші не зараховуються</p>
+                    <button onclick="window.location.href='/miniGames/reaction'">Грати</button>
+                </div>
+                <div class="game">
+                    <h4>Камінь, ножиці, папір</h4>
+                    <p>Класика! Обирайте 1 з 3 варіантів, і в залежності від вибору бота ви отримаєте результат</p>
+                    <button onclick="window.location.href='/miniGames/rockPaperScissors'">Грати</button>
+                </div>
+            </div>
+        </div>
+        <div class="golden-wallet-games">
+            <p>Ігри для користувачів з Golden Wallet</p>
+            <div class="game-buttons">
+                <div class="game">
+                    <h4>Лучник</h4>
+                    <p>Тут треба луком попасти по мішені.</p>
+                    <button onclick="window.location.href='/miniGames/archer'">Грати</button>
+                </div>
+                <div class="game">
+                    <h4>Перехід дороги</h4>
+                    <p>Проходьте через піксельні машини, ризикуючи втратити все, або стати багачем!</p>
+                    <button onclick="window.location.href='/miniGames/road'">Грати</button>
+                </div>
+                <div class="game">
+                    <h4>Башня</h4>
+                    <p>Збудуйте якомога високу башню з блоків!</p>
+                    <button onclick="window.location.href='/miniGames/tower'">Грати</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Ігри взято <a href="https://github.com/he-is-talha/html-css-javascript-games">звідси</a></p>
+    </footer>
+</body>
+
+</html>
