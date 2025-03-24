@@ -35,6 +35,8 @@ app.use('/checkAuth', checkAuthRouter);
 app.use('/miniGames', miniGamesRouter);
 app.use('/about', aboutRouter);
 
+app.use('/miniGames', express.static(path.join(__dirname, 'miniGames')));
+
 app.use(function(req, res, next) {
   next(createError(404));
 });

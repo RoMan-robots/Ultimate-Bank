@@ -1,5 +1,5 @@
 var ctx = myCanvas.getContext("2d");
-var FPS = 60;
+var FPS = 40;
 var jump_amount = -10;
 var max_fall_speed = +10;
 var acceleration = 1;
