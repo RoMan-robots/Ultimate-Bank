@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function reward(score) {
         const token = localStorage.getItem('token');
-        if (!token || !score || score != document.getElementById("score").innerHTML || score <= 0) {
+        if (!token || !score || score != document.getElementById("score").innerHTML) {
             console.log('Invalid score')
             return
         }
@@ -260,8 +260,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        alert(`Ви заробили ${score} рунів`)
-                        window.location.reload()
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000)
                     })
                     .catch(error => {
                         console.error(error)

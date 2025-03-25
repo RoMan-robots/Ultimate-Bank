@@ -10,8 +10,10 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   min-height: 100vh;
   background: #6563FF;
+  color: #F8F8F8;
 }
 .wrapper{
   padding: 25px;

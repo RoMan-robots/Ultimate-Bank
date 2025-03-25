@@ -23,6 +23,7 @@ function matchCards(img1, img2) {
         matched++;
         if(matched == 8) {
             setTimeout(() => {
+                reward()
                 return shuffleCard();
             }, 1000);
         }
@@ -56,6 +57,36 @@ function shuffleCard() {
         imgTag.src = `images/img-${arr[i]}.png`;
         card.addEventListener("click", flipCard);
     });
+}
+
+function reward() { 
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.log('Invalid score')
+        return
+    }
+    let score = 15
+    fetch('/checkAuth', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.isAuthenticated) {
+                return
+            }
+            fetch(`/miniGames/reward/${score}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        })
 }
 
 shuffleCard();
