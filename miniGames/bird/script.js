@@ -7,6 +7,7 @@ var pipe_speed = -2;
 var game_mode = "prestart";
 var time_game_last_running;
 var bottom_bar_offset = 0;
+var rewardGiven = false;
 var pipes = [];
 
 function MySprite(img_url) {
@@ -119,7 +120,7 @@ function display_intro_instructions() {
   ctx.fillStyle = "red";
   ctx.textAlign = "center";
   ctx.fillText(
-    "Press, touch or click to start",
+    "Натисніть, щоб почати",
     myCanvas.width / 2,
     myCanvas.height / 4
   );
@@ -131,10 +132,14 @@ function display_game_over() {
   ctx.font = "30px Arial";
   ctx.fillStyle = "red";
   ctx.textAlign = "center";
-  ctx.fillText("Game Over", myCanvas.width / 2, 100);
+  ctx.fillText("Ви програли", myCanvas.width / 2, 100);
   ctx.fillText("Score: " + score, myCanvas.width / 2, 150);
   ctx.font = "20px Arial";
-  ctx.fillText("Click, touch, or press to play again", myCanvas.width / 2, 300);
+  ctx.fillText(`Натисніть, щоб почати заново. Зароблено: ${score * 6} рунів`, myCanvas.width / 2, 300);
+  if (!rewardGiven) {
+    reward(score * 6);
+    rewardGiven = true;
+  }
 }
 function display_bar_running_along_bottom() {
   if (bottom_bar_offset < -23) bottom_bar_offset = 0;
@@ -144,10 +149,44 @@ function display_bar_running_along_bottom() {
     myCanvas.height - bottom_bar.height
   );
 }
+
+function reward(score) {
+  const token = localStorage.getItem('token');
+  if (!token || !score) {
+    console.log('Invalid score')
+    return
+  }
+  if (score <= 0) {
+    return
+  }
+  fetch('/checkAuth', {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (!data.isAuthenticated) {
+        return
+      }
+      fetch(`/miniGames/reward/${score}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+        .then(response => response.json())
+        .catch(error => {
+          console.error(error)
+        })
+    })
+}
 function reset_game() {
   bird.y = myCanvas.height / 2;
   bird.angle = 0;
   pipes = []; // erase all the pipes from the array
+  rewardGiven = false;
   add_all_my_pipes(); // and load them back in their starting positions
 }
 function add_all_my_pipes() {
