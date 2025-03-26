@@ -11,10 +11,6 @@ let snakeBody = [];
 let setIntervalId;
 let score = 0;
 
-// Getting high score from the local storage
-let highScore = localStorage.getItem("high-score") || 0;
-highScoreElement.innerText = `High Score: ${highScore}`;
-
 const updateFoodPosition = () => {
     // Passing a random 1 - 30 value as food position
     foodX = Math.floor(Math.random() * 30) + 1;
@@ -24,7 +20,8 @@ const updateFoodPosition = () => {
 const handleGameOver = () => {
     // Clearing the timer and reloading the page on game over
     clearInterval(setIntervalId);
-    alert("Game Over! Press OK to replay...");
+    reward()
+    alert(`Ви програли! Зароблено: ${score *2} рунів`);
     location.reload();
 }
 
@@ -57,10 +54,7 @@ const initGame = () => {
         updateFoodPosition();
         snakeBody.push([foodY, foodX]); // Pushing food position to snake body array
         score++; // increment score by 1
-        highScore = score >= highScore ? score : highScore;
-        localStorage.setItem("high-score", highScore);
-        scoreElement.innerText = `Score: ${score}`;
-        highScoreElement.innerText = `High Score: ${highScore}`;
+        scoreElement.innerText = `Рахунок: ${score}`;
     }
     // Updating the snake's head position based on the current velocity
     snakeX += velocityX;
@@ -86,6 +80,35 @@ const initGame = () => {
         }
     }
     playBoard.innerHTML = html;
+}
+
+function reward() { 
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.log('Invalid score')
+        return
+    }
+    fetch('/checkAuth', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.isAuthenticated) {
+                return
+            }
+            fetch(`/miniGames/reward/${score * 2}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        })
 }
 
 updateFoodPosition();
