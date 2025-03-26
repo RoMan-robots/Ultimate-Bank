@@ -3,8 +3,15 @@ const game = { timer: 0, start: null };
 // Create Message Element
 const message = document.createElement("div");
 message.classList.add("message");
-message.textContent = "Press To Start";
+message.textContent = "Натисніть, щоб почати";
 document.body.prepend(message);
+
+const button = document.createElement("button");
+button.textContent = "Вийти";
+document.body.prepend(button);
+button.addEventListener("click", () => {
+    window.location.href = "/miniGames";
+});
 
 // Create a Box
 const box = document.createElement("div");
@@ -18,13 +25,60 @@ box.addEventListener("click", () => {
   box.style.display = "none";
   game.timer = setTimeout(addBox, randomNumbers(3000));
   if (!game.start) {
-    message.textContent = "Watch for element and click it";
+    message.textContent = "Натисніть, щоб почати";
   } else {
     const current = new Date().getTime();
     const duration = (current - game.start) / 1000;
-    message.textContent = `It took ${duration} seconds to click`;
+    message.innerHTML = `
+    Ваш час: ${duration} секунд <br>
+    Зароблено: ${calculateReward(duration)} рунів за останній раз
+    `;
+    reward(calculateReward(duration));
   }
 });
+
+function calculateReward(duration) {
+    if (duration > 1.2) {
+        return 0;
+    }else if (duration < 0.5) {
+        return 2.5;
+    } else {
+        return ((2.5 - (2.5 * (duration - 0.5)) / 3).toFixed(2));
+    }
+}
+
+function reward(score) {
+    const token = localStorage.getItem('token');
+    if (!token || !score) {
+        console.log('Invalid score')
+        return
+    }
+    if (score <= 0) {
+        return
+    }
+    fetch('/checkAuth', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.isAuthenticated) {
+                return
+            }
+            fetch(`/miniGames/reward/${score}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+                .then(response => response.json())
+                .catch(error => {
+                    console.error(error)
+                })
+        })
+}
 
 function randomNumbers(max) {
   return Math.floor(Math.random() * max);
