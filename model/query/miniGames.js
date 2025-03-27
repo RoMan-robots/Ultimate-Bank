@@ -1,12 +1,11 @@
 const { pool } = require('../db');
 
-async function reward(score) {
+async function reward(score, userId) {
     let client;
     try {
         client = await pool.connect();
-        const insertQuery = `UPDATE users SET balance = balance + $1 WHERE id = 1 RETURNING *`;
-        const result = await client.query(insertQuery, [score]);
-        console.log(result.rows[0]);
+        const insertQuery = `UPDATE users SET balance = balance + $1 WHERE id = $2 RETURNING *`;
+        const result = await client.query(insertQuery, [score, userId]);
         return result.rows[0];
     } catch (error) {
         console.error('Reward error:', error);

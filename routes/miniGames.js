@@ -6,9 +6,10 @@ router.get('/', (req, res) => {
     res.render('miniGames');
 });
 
-router.post('/reward/:score', async (req, res) => {
-    const score = req.params.score;
-    await reward(score);
+router.post('/reward', async (req, res) => {
+    const score = req.body.score;
+    const { user } = req.body;
+    await reward(score, user.id);
     res.status(200).json({ success: true });
 });
 

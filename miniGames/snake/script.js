@@ -98,12 +98,12 @@ function reward() {
             if (!data.isAuthenticated) {
                 return
             }
-            fetch(`/miniGames/reward/${score * 2}`, {
+            fetch(`/miniGames/reward`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
                 },
+                body: JSON.stringify({ score: score * 2, user: data.user }),
             })
             .catch(error => {
                 console.error(error)

@@ -251,12 +251,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!data.isAuthenticated) {
                     return
                 }
-                fetch(`/miniGames/reward/${score}`, {
+                fetch(`/miniGames/reward`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
                     },
+                    body: JSON.stringify({ score, user: data.user }),
                 })
                     .then(response => response.json())
                     .then(data => {
