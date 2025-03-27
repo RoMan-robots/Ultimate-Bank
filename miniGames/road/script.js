@@ -43,6 +43,7 @@ let previousTimestamp;
 let startMoving;
 let moves;
 let stepStartTimestamp;
+let rewarded;
 
 const carFrontTexture = new Texture(40, 80, [{ x: 0, y: 10, w: 30, h: 60 }]);
 const carBackTexture = new Texture(40, 80, [{ x: 10, y: 10, w: 30, h: 60 }]);
@@ -492,6 +493,7 @@ document.querySelector("#retry").addEventListener("click", () => {
   lanes.forEach((lane) => scene.remove(lane.mesh));
   initaliseValues();
   endDOM.style.visibility = "hidden";
+  rewarded = false;
 });
 
 document
@@ -521,6 +523,41 @@ window.addEventListener("keydown", (event) => {
     move("right");
   }
 });
+
+
+function reward(score) {
+    const token = localStorage.getItem('token');
+    if (!token || !score) {
+        console.log('Invalid score')
+        return
+    }
+    score = (score / 2)
+    if (score <= 0) {
+        return
+    }
+    fetch('/checkAuth', {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.isAuthenticated) {
+                return
+            }
+            fetch(`/miniGames/reward/${score}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+                .then(response => response.json())
+                .catch(error => {
+                    console.error(error)
+                })
+        })
+}
 
 function move(direction) {
   const finalPositions = moves.reduce(
@@ -707,6 +744,11 @@ function animate(timestamp) {
       const carMaxX = vechicle.position.x + (vechicleLength * zoom) / 2;
       if (chickenMaxX > carMinX && chickenMinX < carMaxX) {
         endDOM.style.visibility = "visible";
+        let score = document.getElementById("counter").innerHTML;
+        if (rewarded) return;
+        console.log(score)
+        reward(score);
+        rewarded = true;
       }
     });
   }
