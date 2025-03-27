@@ -405,6 +405,9 @@ var Game = /** @class */ (function () {
   };
   Game.prototype.endGame = function () {
     this.updateState(this.STATES.ENDED);
+    this.reward = document.getElementById("reward");
+    this.reward.innerHTML = String(this.scoreContainer.innerHTML * 2);
+    reward(this.scoreContainer.innerHTML * 2);
   };
   Game.prototype.tick = function () {
     var _this = this;
@@ -417,3 +420,33 @@ var Game = /** @class */ (function () {
   return Game;
 })();
 var game = new Game();
+
+function reward(score) {
+    const token = localStorage.getItem('token');
+    if (!token || !score || score <= 0) {
+        console.log('Invalid score')
+        return
+    }
+    fetch('/checkAuth', {   
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.isAuthenticated) {
+                return
+            }
+            fetch(`/miniGames/reward/${score}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+                .then(response => response.json())
+                .catch(error => {
+                    console.error(error)
+                })
+        })
+}
