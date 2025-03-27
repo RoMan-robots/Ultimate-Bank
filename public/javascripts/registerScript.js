@@ -31,7 +31,7 @@ $(document).ready(function() {
                     showNotification('Реєстрація успішна. Увійдіть у ваш акаунт для продовження', 'success');
                     setTimeout(() => {
                         window.location.href = '/dashboard';
-                    }, 1700);
+                    }, 2500);
                 }
             },
             error: function (xhr) {
