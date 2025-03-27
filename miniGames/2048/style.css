@@ -63,3 +63,9 @@ body {
   .score-title {
     font-size: 16px;
   }
+
+  #exit {
+    background-color: #8f7a66;
+    color: #ffffff;
+    border: none;
+  }

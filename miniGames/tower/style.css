@@ -105,3 +105,24 @@ body {
 #container.ended .game-over p {
   transition-delay: 0.3s;
 }
+
+#exit {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; 
+    background-color: #f44336;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#exit:hover {
+    background-color: #d81e1e;
+}

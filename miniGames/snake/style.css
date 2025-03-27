@@ -77,3 +77,8 @@ body {
     font-size: 1rem;
   }
 }
+
+#exit {
+    background: transparent;
+    color: #B8C6DC;
+}
