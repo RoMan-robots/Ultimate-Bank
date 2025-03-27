@@ -20,7 +20,8 @@ exports.up = function(db) {
       login: { type: 'varchar', unique: true },
       email: { type: 'varchar', unique: true },
       password: { type: 'varchar' },
-      balance: { type: 'float' }
+      balance: { type: 'float' },
+      is_golden: { type: 'boolean', defaultValue: false }
     }),
     db.createTable('store_items', {
       id: { type: 'serial', primaryKey: true },
@@ -30,7 +31,6 @@ exports.up = function(db) {
       image_url: { type: 'varchar' },
       category: { type: 'varchar' },
       rarity: { type: 'varchar' },
-      is_golden: { type: 'boolean', defaultValue: false }
     }),
     db.createTable('purchases', {
       id: { type: 'serial', primaryKey: true },
