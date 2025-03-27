@@ -37,7 +37,7 @@ function reward() {
         console.log('Invalid score')
         return
     }
-    let score = 10
+    let score = 5
     fetch('/checkAuth', {
         headers: {
             'Authorization': `Bearer ${token}`,
