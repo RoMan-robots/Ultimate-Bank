@@ -1,6 +1,6 @@
 const { pool } = require('../db');
 
-async function reward(score, userId) {
+async function rewardUser(score, userId) {
     let client;
     try {
         client = await pool.connect();
@@ -17,4 +17,4 @@ async function reward(score, userId) {
     }
 }
 
-module.exports = { reward }
+module.exports = { rewardUser }

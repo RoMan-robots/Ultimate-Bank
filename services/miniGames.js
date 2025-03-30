@@ -1,9 +1,9 @@
-const { reward } = require('../model/query/miniGames');
+const { rewardUser } = require('../model/query/miniGames');
 
 const reward = async (req, res) => {
     const score = req.body.score;
     const { user } = req.body;
-    await reward(score, user.id);
+    await rewardUser(score, user.id);
     res.status(200).json({ success: true });
 };
 
