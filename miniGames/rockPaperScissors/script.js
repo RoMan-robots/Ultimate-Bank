@@ -31,13 +31,18 @@ function computerChoice() {
   return choices[randomChoice];
 }
 
-function reward() { 
+function reward(type='win') { 
     const token = localStorage.getItem('token');
     if (!token) {
         console.log('Invalid score')
         return
     }
-    let score = 5
+    let score;
+    if (type === 'win') {
+        score = 10
+    } else if (type === 'lose') {
+        score = -5
+    }
     fetch('/checkAuth', {
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -80,6 +85,7 @@ function gamePlay(userSelection, computerSelection) {
     } else {
         computerPoints++;
         computerPointsEl.textContent = computerPoints;
+        reward('lose')
         return `Ви програли! ${computerChoiceUkrainian} перемагає ${userChoiceUkrainian}`;
     }
 }

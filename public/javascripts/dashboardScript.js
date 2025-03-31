@@ -18,6 +18,7 @@ $(document).ready(function() {
                 $('#username').text(user.name);
                 $('#balance').text(`${(user.balance).toFixed(2)} ℝ$`); 
                 $('#id').text(user.id);
+                $('#is_golden').text(user.is_golden ? 'Golden Wallet активовано' : '');
                 $.ajax({
                     type: "GET",
                     url: `/store/inventory/${user.id}`,

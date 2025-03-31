@@ -1,4 +1,4 @@
-const buyGoldenWallet = require('../model/query/goldenWallet');
+const { buyGoldenWallet } = require('../model/query/goldenWallet');
 
 const goldenWallet = async (req, res) => {
   const { user } = req.body;
