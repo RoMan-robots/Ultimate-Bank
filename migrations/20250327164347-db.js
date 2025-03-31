@@ -15,6 +15,7 @@ exports.up = function(db) {
     db.dropTable('purchases', { ifExists: true }),
     db.dropTable('store_items', { ifExists: true }),
     db.dropTable('users', { ifExists: true }),
+    
     db.createTable('users', {
       id: { type: 'serial', primaryKey: true },
       login: { type: 'varchar', unique: true },
@@ -31,6 +32,7 @@ exports.up = function(db) {
       image_url: { type: 'varchar' },
       category: { type: 'varchar' },
       rarity: { type: 'varchar' },
+      is_golden: { type: 'boolean', defaultValue: false }
     }),
     db.createTable('purchases', {
       id: { type: 'serial', primaryKey: true },

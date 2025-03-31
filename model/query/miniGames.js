@@ -1,4 +1,4 @@
-const { pool } = require('../db');
+const { pool } = require('../../db');
 
 async function rewardUser(score, userId) {
     let client;
