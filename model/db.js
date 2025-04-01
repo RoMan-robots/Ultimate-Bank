@@ -8,7 +8,7 @@ const dbConfig = {
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
     ssl: {
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
         ca: process.env.SSL,
     },
     max: 10,
