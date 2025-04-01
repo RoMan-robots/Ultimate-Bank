@@ -1,4 +1,4 @@
-const { pool } = require('../../db');
+const { pool } = require('../db');
 
 async function getAllStoreItems() {
     return runQuery('SELECT * FROM store_items');
