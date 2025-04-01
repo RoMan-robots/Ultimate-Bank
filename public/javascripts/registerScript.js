@@ -36,7 +36,7 @@ $(document).ready(function() {
             },
             error: function (xhr) {
                 const response = xhr.responseJSON || {};
-                const displayMessage = response.message || 'Помилка реєстрації. Спробуйте пізніше';
+                const displayMessage = response.error || 'Помилка реєстрації. Спробуйте пізніше';
                 const type = response.type || 'error';
 
                 showNotification(displayMessage, type);

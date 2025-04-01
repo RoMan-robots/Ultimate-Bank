@@ -27,7 +27,7 @@ const register = async (req, res) => {
     return res.status(400).json({ error: result.message, type: result.type });
   } catch (error) {
     console.error('Registration error:', error);
-    return res.status(500).json({ error: 'Internal server error', type: 'error' });
+    return res.status(500).json({ error: error.message, type: 'error' });
   }
 };
 
